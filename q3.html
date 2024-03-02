@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Application Form</title>
+<style>
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+form {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Job Application Form</h2>
+    <form id="jobApplicationForm">
+		
+        <h3>Personal Information</h3>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="example@email.com" required>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" pattern="^03[0-9]{9}$" title="Please enter a valid Pakistani mobile number starting with '03' and containing 11 digits" required>
+
+        <h3>Resume and Cover Letter</h3>
+        <label for="resume">Upload Resume:</label>
+        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+        <label for="coverLetter">Cover Letter:</label>
+        <textarea id="coverLetter" name="coverLetter" rows="4"></textarea>
+        
+		<h3>Education</h3>
+		<label for="educationLevel">Highest Level of Education Attained:</label>
+		<input type="text" id="educationLevel" name="educationLevel" required>
+		<label for="schoolName">Name of School/University:</label>
+		<input type="text" id="schoolName" name="schoolName" required>
+		<label for="major">Major/Area of Study:</label>
+		<input type="text" id="major" name="major" required>
+		<label for="graduationYear">Graduation Year:</label>
+		<input type="text" id="graduationYear" name="graduationYear" required>
+		
+		<h3>Employment History</h3>
+		<label for="jobTitle">Previous Job Titles:</label>
+		<input type="text" id="jobTitle" name="jobTitle">
+		<label for="companyName">Company Names:</label>
+		<input type="text" id="companyName" name="companyName">
+		<label for="employmentDates">Employment Dates:</label>
+		<input type="text" id="employmentDates" name="employmentDates">
+		<label for="jobResponsibilities">Job Responsibilities:</label>
+		<input type="text" id="jobResponsibilities" name="jobResponsibilities">
+		
+		<h3>Skills</h3>
+		<label for="relevantSkills">Relevant Skills:</label>
+		<input type="text" id="relevantSkills" name="relevantSkills">
+		<label for="certifications">Certifications:</label>
+		<input type="text" id="certifications" name="certifications">
+		
+		<h3>Availability</h3>
+		<label for="startDate">Start Date:</label>
+		<input type="date" id="startDate" name="startDate" required>
+		<label for="preferredSchedule">Preferred Work Schedule:</label>
+		<input type="text" id="preferredSchedule" name="preferredSchedule">
+		<label for="relocate">Willingness to Relocate:</label>
+		<select id="relocate" name="relocate" required>
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</select>
+		
+		<h3>References</h3>
+		<label for="referenceName">Reference Name:</label>
+		<input type="text" id="referenceName" name="referenceName">
+		<label for="referenceContact">Reference Contact Information:</label>
+		<input type="text" id="referenceContact" name="referenceContact">
+		<label for="relationship">Relationship to Applicant:</label>
+		<input type="text" id="relationship" name="relationship">
+		
+        <h3>Additional Questions</h3>
+        <label for="whyWorkHere">Why do you want to work for this company?</label>
+        <textarea id="whyWorkHere" name="whyWorkHere" rows="4" required></textarea>
+		
+        <h3>Consent and Agreement</h3>
+        <label><input type="checkbox" id="agreeTerms" name="agreeTerms" required> I agree to the terms and conditions</label><br>
+        <label><input type="checkbox" id="privacyPolicy" name="privacyPolicy" required> I acknowledge the privacy policy</label>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <button id="viewAsTable">View Applications as Table</button>
+    <div id="applicationsTable"></div>
+</div>
+
+<script>
+	
+	document.getElementById("jobApplicationForm").addEventListener("submit", function(event) {
+		event.preventDefault();
+		if (validateForm()) {
+			processData();
+		}
+	});
+
+	document.getElementById("viewAsTable").addEventListener("click", function() {
+		displayApplicationsAsTable();
+	});
+
+	function validateForm() {
+		const email = document.getElementById("email").value.trim();
+		const phoneNumber = document.getElementById("phoneNumber").value.trim();
+
+		if (email === "" || phoneNumber === "") {
+			alert("Please email and password fields.");
+			return false;
+		}
+		
+		if (!validateEmail(email)) {
+			alert("Please enter a valid email address.");
+			return false;
+		}
+		
+		if (!validatePhoneNumber(phoneNumber)) {
+			alert("Please enter a valid phone number.");
+			return false;
+		}
+
+		return true;
+	}
+
+	function validateEmail(email) {
+		
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return emailRegex.test(email);
+	}
+
+	function validatePhoneNumber(phoneNumber) {
+		
+		const phoneRegex = /^(?:\+92|0)?\d{10}$/;
+		return phoneRegex.test(phoneNumber);
+	}
+	
+	const allApplications = [];
+	
+	function processData() {
+		const formData = new FormData(document.getElementById("jobApplicationForm"));
+		const processedData = {};
+		formData.forEach((value, key) => {
+			processedData[key] = value;
+		});
+		allApplications.push(processedData);
+		console.log("Form submitted successfully!");
+	}
+	
+	function displayAllApplications() {
+		const table = document.createElement("table");
+		const headerRow = table.insertRow();
+		for (const key in allApplications[0]) {
+			if (key !== "agreeTerms" && key !== "privacyPolicy") {
+				const headerCell = headerRow.insertCell();
+				headerCell.textContent = key;
+			}
+		}
+		allApplications.forEach(application => {
+			const row = table.insertRow();
+			for (const key in application) {
+				if (key !== "agreeTerms" && key !== "privacyPolicy") {
+					const cell = row.insertCell();
+					cell.textContent = application[key];
+				}
+			}
+		});
+		document.getElementById("applicationsTable").appendChild(table);
+	}
+</script>
+
+
+</body>
+</html>

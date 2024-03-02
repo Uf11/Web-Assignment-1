@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 600px;
+			height: auto;
+            background-color: #fff;
+            position: relative;
+			margin: 0 auto; /* This will center the container horizontally */
+            display: flex;
+			flex-direction: column;
+
+        }
+        .upper-left {
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .upper-left img {
+            width: 40%;
+            height: auto;
+			margin-right: 20px;
+        }
+        .upper-left .info {
+            margin-left: 50px;
+			margin-top: 50px;
+        }
+        .upper-left h1 {
+            color: purple;
+            margin: 5px 0;
+        }
+        .upper-left p {
+            color: grey;
+            margin: 5px 0;
+        }
+		.info p{
+			
+			font-size: 20px;
+		}
+        .contact-info {
+            margin-top: 20px;
+            color: purple;
+        }
+        .contact-info p {
+            margin-left: 50px;
+            display: flex;
+            align-items: center;
+        }
+		.contact-info p i {
+			margin-right: 10px; /* Add space between icons and text */
+			color: purple; /* Make icons purple */
+		}
+        .profile {
+			clear: both; /* Added to ensure content clears floated elements */
+			margin: 0 50px;
+        }
+        .profile p {
+            color: grey;
+			margin: 5px 0;
+        }
+		.profile h2 {
+            color: purple;
+			margin: 15px 0 0 0;
+        }
+        .lower-right {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			margin: 0;
+			padding: 0;
+		}
+        .lower-right img {
+            width: 100%;
+            height: auto;
+        }
+		table {
+		  width: 80%;
+		  /*text-align: center;  Centering the table */
+		  border-collapse: collapse;
+		  margin: 0 auto;
+		  font-size:14px;
+		  
+		}
+
+		td {
+		  padding: 10px;
+		  border: 1px solid transparent; /* Setting the default border color to transparent */
+		}
+
+		th, td {
+		  border-top: 0.5px solid purple; /* Making the top border purple */
+		}
+
+		.middle-line {
+		  border-right: 0.5px solid grey; /* Making the middle line between columns purple */
+		}
+
+		.purple {
+		  font-size:16px;
+		  color: purple;
+		  font-weight: bold;
+		}
+		
+		.left-column {
+		  width:50%;
+		}
+		.right-column {
+		  padding: 7px 20px;
+		}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="upper-left">
+            <img src="upperCorner.png" alt="Profile Picture">
+			<div>
+				<div class="info">
+					<h1>Muhammad Usman Ghani</h1>
+					<p>Student</p>
+				</div>
+				
+				<div class="contact-info">
+					<p><i class="fas fa-envelope"></i>   itsusman11@gemail.com</p>
+					<p><i class="fas fa-phone"></i>   +92 332 6573282</p>
+					<p><i class="fas fa-map-marker-alt"></i>   Faisal Town lahore</p>
+				</div>
+			</div>
+        </div>
+        <div class="profile">
+            <h2>Profile</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget malesuada nisl, vitae eleifend tellus. Etiam convallis elit sit amet ligula tempus vestibulum. Fusce sollicitudin eu risus sed molestie. Donec volutpat facilisis diam et pulvinar. Etiam porta, orci sed auctor hendrerit, ex est vehicula risus, non mollis eros diam sed neque. Sed non convallis justo, vel pellentesque ligula. Fusce et lacus ultricies, imperdiet tellus at, euismod velit.</p>
+        </div>
+		<table>
+			<tr>
+			  <td class="middle-line left-column"><span class="purple">Education</span><br>
+				<strong>FAST NUCES Lahore</strong><br>
+				2020 - 2024<br>
+				BS CS
+			  </td>
+			  <td class="right-column"><span  class="purple">Skills</span><br>
+				Flask | Html | CSS | JavaScript| DBMS | MySQL | GitHub |Assembly Language | React | Node |
+				MONGO DB
+
+			  </td>
+			</tr>
+			<tr>
+			  <td rowspan="2" class="middle-line left-column"><span class="purple">Employment History</span><br>
+			  <strong>Sayal Systems</strong><br>
+				July 2023 - September 2023<br>
+				Python Developer Intern<br>
+				• Spearheaded creation and thorough testing of diverse APIs primarily using Flask.<br>
+				• Collaborated closely within a team environment, actively engaging with colleagues to achieve project goals.
+
+			  </td>
+			  <td class="right-column"><span class="purple">Certificate</span><br>
+				Eathical Hacking<br>
+				Linkedin Learning
+			  </td>
+			</tr>
+			<tr>
+			  <td class="right-column"><span class="purple">Languages</span><br>
+				- Urdu<br>
+				- English<br>
+			  </td>
+			</tr>
+		  </table>
+        <div class="lower-right">
+            <img src="lowerCorner.png" alt="Lower Corner">
+        </div>
+    </div>
+</body>
+</html>
