@@ -50,19 +50,47 @@ form input[type="submit"]:hover {
     background-color: #45a049;
 }
 
-table {
+#applicationsTable {
     width: 100%;
     border-collapse: collapse;
+    overflow-x: auto;
 }
 
-table, th, td {
-    border: 1px solid #ddd;
+#applicationsTable th, #applicationsTable td {
     padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
 }
 
-th {
-    background-color: #f2f2f2;
+@media only screen and (max-width: 600px) {
+    #applicationsTable {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    #applicationsTable thead {
+        display: none;
+    }
+    #applicationsTable tbody, #applicationsTable tr {
+        display: block;
+        width: 100%;
+    }
+    #applicationsTable td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+        border-right: 0;
+    }
+    #applicationsTable td:last-child {
+        border-bottom: 0;
+    }
+    #applicationsTable td:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+    }
 }
+
+
 </style>
 </head>
 <body>
@@ -157,7 +185,7 @@ th {
 	});
 
 	document.getElementById("viewAsTable").addEventListener("click", function() {
-		displayApplicationsAsTable();
+		displayAllApplications();
 	});
 
 	function validateForm() {
@@ -204,6 +232,7 @@ th {
 		});
 		allApplications.push(processedData);
 		console.log("Form submitted successfully!");
+		alert("Form Submitted")
 	}
 	
 	function displayAllApplications() {
@@ -224,6 +253,7 @@ th {
 				}
 			}
 		});
+		document.getElementById("applicationsTable").innerHTML = ""
 		document.getElementById("applicationsTable").appendChild(table);
 	}
 </script>
